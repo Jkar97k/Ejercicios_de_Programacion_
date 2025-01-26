@@ -446,3 +446,52 @@ string expresion2 = "{ a * ( c + d ) ] - 5 }";
 //Console.WriteLine(EstaEquilibrado(expresion1)); // Salida: True
 //Console.WriteLine(EstaEquilibrado(expresion2)); // Salida: False
 
+/*
+ * Crea una función que reciba dos cadenas como parámetro (str1, str2)
+ * e imprima otras dos cadenas como salida (out1, out2).
+ * - out1 contendrá todos los caracteres presentes en la str1 pero NO
+ *   estén presentes en str2.
+ * - out2 contendrá todos los caracteres presentes en la str2 pero NO
+ *   estén presentes en str1.
+ */
+
+
+/*
+ * Escribe una función que reciba un texto y retorne verdadero o
+ * falso (Boolean) según sean o no palíndromos.
+ * Un Palíndromo es una palabra o expresión que es igual si se lee
+  * de izquierda a derecha que de derecha a izquierda.
+ * NO se tienen en cuenta los espacios, signos de puntuación y tildes.
+ * Ejemplo: Ana lleva al oso la avellana.
+ */
+
+
+/*
+ * Escribe una función que calcule y retorne el factorial de un número dado
+ * de forma recursiva.
+ */
+
+
+/*
+ * Escribe una función que calcule si un número dado es un número de Armstrong
+ * (o también llamado narcisista).
+ * Si no conoces qué es un número de Armstrong, debes buscar información
+ * al respecto.
+ */
+
+/*
+ * Crea una función que calcule y retorne cuántos días hay entre dos cadenas
+ * de texto que representen fechas.
+ * - Una cadena de texto que representa una fecha tiene el formato "dd/MM/yyyy".
+ * - La función recibirá dos String y retornará un Int.
+ * - La diferencia en días será absoluta (no importa el orden de las fechas).
+ * - Si una de las dos cadenas de texto no representa una fecha correcta se
+ *   lanzará una excepción.
+ */
+
+/*
+ * Crea una función que reciba un String de cualquier tipo y se encargue de
+ * poner en mayúscula la primera letra de cada palabra.
+ * - No se pueden utilizar operaciones del lenguaje que
+ *   lo resuelvan directamente.
+ */
