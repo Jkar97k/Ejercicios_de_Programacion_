@@ -455,6 +455,34 @@ string expresion2 = "{ a * ( c + d ) ] - 5 }";
  *   estén presentes en str1.
  */
 
+void ejercicio12(string str1, string str2)
+{
+    string out1 = "";
+    string out2 = "";
+
+    foreach (char c in str1)
+    {
+        if (!str2.Contains(c))
+        {
+            out1 += c;
+        }
+    }
+
+    foreach (char c in str2)
+    {
+        if (!str1.Contains(c))
+        {
+            out2 += c;
+        }
+    }
+
+    Console.WriteLine(out1);
+    Console.WriteLine(out2);
+}
+
+string str1 = "Hola Mundo";
+string str2 = "Mundo Feliz";
+ejercicio12(str1, str2);
 
 /*
  * Escribe una función que reciba un texto y retorne verdadero o
@@ -464,13 +492,45 @@ string expresion2 = "{ a * ( c + d ) ] - 5 }";
  * NO se tienen en cuenta los espacios, signos de puntuación y tildes.
  * Ejemplo: Ana lleva al oso la avellana.
  */
+ void Ejercicio13(string texto)
+ {
+        texto = Regex.Replace(texto, "[^a-zA-Z]", "").ToLower();
+    
+        for (int i = 0; i < texto.Length / 2; i++)
+        {
+            if (texto[i] != texto[texto.Length - 1 - i])
+            {
+                Console.WriteLine("No es palindromo");
+                return;
+            }
+        }
+    
+        Console.WriteLine("Es palindromo");
+ }
+
 
 
 /*
  * Escribe una función que calcule y retorne el factorial de un número dado
  * de forma recursiva.
- */
+ */void Ejercicio14(int n)
+ {
+    if(n == 0 || n == 1)
+    {
+        Console.WriteLine("El factorial de " + n + " es 1");
+        return;
+    }
 
+    long resultado = 1;
+
+    for(int i = 2 ; i < n ; i++)
+    {
+        resultado *= i;
+    }
+    Console.WriteLine("El factorial de " + n + " es " + resultado);
+ }
+
+Ejercicio14(7);
 
 /*
  * Escribe una función que calcule si un número dado es un número de Armstrong
