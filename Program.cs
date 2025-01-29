@@ -1,5 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
+
 
 Console.WriteLine("Hello, World!");
 
@@ -227,12 +231,42 @@ void ejercicio4()
  * Crea un programa que se encargue de calcular el aspect ratio de una
  * imagen a partir de una url.
  * - Url de ejemplo:
- *   https://raw.githubusercontent.com/mouredevmouredev/master/mouredev_github_profile.png
+ *   https://opgg-static.akamaized.net/meta/images/lol/latest/champion/Ziggs.png?image=e_upscale,c_crop,h_103,w_103,x_9,y_9/q_auto:good,f_webp,w_160,h_160&v=1736426255
  * - Por ratio hacemos referencia por ejemplo a los "16:9" de una
  *   imagen de 1920*1080px.
  */
 
-//ejercicio6("https://raw.githubusercontent.com/mouredev/mouredev/master/mouredev_github_profile.png"); /// penndiente
+string url = "https://opgg-static.akamaized.net/meta/images/lol/latest/champion/Ziggs.png?image=e_upscale,c_crop,h_103,w_103,x_9,y_9/q_auto:good,f_webp,w_160,h_160&v=1736426255";
+
+async Task ejercicio6(string url) 
+{
+    HttpClient client = new();
+
+    byte[] imageData = await client.GetByteArrayAsync(url);
+
+    // Cargar la imagen usando ImageSharp
+    var image = SixLabors.ImageSharp.Image.Load(imageData);
+
+    // Obtener las dimensiones de la imagen
+    int width = image.Width;
+    int height = image.Height;
+
+    int gcd = GreatestCommonDivisor(width, height);
+    int aspectWidth = width / gcd;
+    int aspectHeight = height / gcd;
+
+    Console.WriteLine($"Dimensiones de la imagen: {width}x{height}");
+    Console.WriteLine($"Aspect Ratio: {aspectWidth}:{aspectHeight}");
+}
+
+static int GreatestCommonDivisor(int a, int b)
+{
+    while (b != 0)
+    {
+        (a, b) = (b, a % b); // Usando una tupla para simplificar el intercambio
+    }
+    return a;
+}
 
 
 /*
