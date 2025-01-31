@@ -643,3 +643,202 @@ void Ejercicio16(string fecha1, string fecha2)
 
     Console.WriteLine(resultado);
  }
+
+/*
+ * Crea una función que evalúe si un/a atleta ha superado correctamente una
+ * carrera de obstáculos.
+ * - La función recibirá dos parámetros:
+ *      - Un array que sólo puede contener String con las palabras
+ *        "run" o "jump"
+ *      - Un String que represente la pista y sólo puede contener "_" (suelo)
+ *        o "|" (valla)
+ * - La función imprimirá cómo ha finalizado la carrera:
+ *      - Si el/a atleta hace "run" en "_" (suelo) y "jump" en "|" (valla)
+ *        será correcto y no variará el símbolo de esa parte de la pista.
+ *      - Si hace "jump" en "_" (suelo), se variará la pista por "x".
+ *      - Si hace "run" en "|" (valla), se variará la pista por "/".
+ * - La función retornará un Boolean que indique si ha superado la carrera.
+ * Para ello tiene que realizar la opción correcta en cada tramo de la pista.
+ */
+
+Boolean Ejercicio18(string[] acciones, string pista)
+{
+    if(!acciones.All(palabras => palabras.ToLower() == "run" || palabras.ToLower() == "jump"))
+    {
+        Console.WriteLine("acciones incorrectas");
+        return false;
+
+    }
+
+    for(int i = 0; i < acciones.Length; i++)
+    {
+        acciones[i] = acciones[i].ToLower();
+    }
+
+    char[] pistaArray = pista.ToCharArray();
+
+    for (int i = 0; i < acciones.Length; i++)
+    {
+        
+        if (
+            acciones[i] == "run" && pistaArray[i] == '_' ||
+            acciones[i] == "jump" && pistaArray[i] == '|'
+            ) 
+        {
+            continue;
+        }
+        if (acciones[i] == "jump" &&  pistaArray[i] != '|') 
+        {
+            pistaArray[i] = 'x';
+        }
+        if (acciones[i] == "run" && pistaArray[i] != '_')
+        {
+            pistaArray[i] = '/';
+        }
+        else
+        {
+            Console.WriteLine("No paso");
+            return false;
+        }
+
+    }
+    Console.WriteLine(new string(pistaArray));
+
+    return true;
+}
+
+
+
+/*
+ * Crea una función que analice una matriz 3x3 compuesta por "X" y "O"
+ * y retorne lo siguiente:
+ * - "X" si han ganado las "X"
+ * - "O" si han ganado los "O"
+ * - "Empate" si ha habido un empate
+ * - "Nulo" si la proporción de "X", de "O", o de la matriz no es correcta.
+ *   O si han ganado los 2.
+ * Nota: La matriz puede no estar totalmente cubierta.
+ * Se podría representar con un vacío "", por ejemplo.
+ */
+
+char[,] juego = new char[3, 3]
+{
+    { 'X', 'X', 'O' },
+    { 'O', 'X', 'X' },
+    { 'X', 'O', 'O' }
+};
+
+void Ejercicio19(char[,] juego) 
+{
+    if (tableroJugadores(juego, 'X'))
+    {
+        Console.WriteLine("Gano X");
+        return;
+    }
+
+    if (tableroJugadores(juego, 'O'))
+    {
+        Console.WriteLine("Gano O");
+        return;
+    }
+    Console.WriteLine("Empate");
+    return;
+    
+}
+
+Boolean tableroJugadores(char[,] matriz, char jugador) 
+{
+    if (matriz[0, 0] == jugador && matriz[1, 1] == jugador && matriz[2, 2] == jugador) return true;
+    if (matriz[0, 2] == jugador && matriz[1, 1] == jugador && matriz[2, 0] == jugador) return true;
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (matriz[i, 0] == jugador && matriz[i, 1] == jugador && matriz[i, 2] == jugador) return true;
+        if (matriz[0, i] == jugador && matriz[1, i] == jugador && matriz[2, i] == jugador) return true;
+    }
+    return false;
+}
+
+Ejercicio19(juego);
+
+/*
+ * Crea una función que reciba días, horas, minutos y segundos (como enteros)
+ * y retorne su resultado en milisegundos.
+ */
+void Ejercicio20(int dias = 0 , int horas = 0, int minutos = 0, int segundos = 0)
+{
+    long milisegundos = dias * 24L * 3600 * 1000 +
+                            horas * 3600L * 1000 +
+                            minutos * 60L * 1000 +
+                            segundos * 1000L;
+
+    Console.WriteLine($"Total {milisegundos} milisegundos");
+}
+
+Ejercicio20(1, 2, 3, 4);
+
+
+
+/*
+ * Crea una función que sume 2 números y retorne su resultado pasados
+ * unos segundos.
+ * - Recibirá por parámetros los 2 números a sumar y los segundos que
+ *   debe tardar en finalizar su ejecución.
+ * - Si el lenguaje lo soporta, deberá retornar el resultado de forma
+ *   asíncrona, es decir, sin detener la ejecución del programa principal.
+ *   Se podría ejecutar varias veces al mismo tiempo.
+ */
+
+/*
+ * Lee el fichero "Challenge21.txt" incluido en el proyecto, calcula su
+ * resultado e imprímelo.
+ * - El .txt se corresponde con las entradas de una calculadora.
+ * - Cada línea tendrá un número o una operación representada por un
+ *   símbolo (alternando ambos).
+ * - Soporta números enteros y decimales.
+ * - Soporta las operaciones suma "+", resta "-", multiplicación "*"
+ *   y división "/".
+ * - El resultado se muestra al finalizar la lectura de la última
+ *   línea (si el .txt es correcto).
+ * - Si el formato del .txt no es correcto, se indicará que no se han
+ *   podido resolver las operaciones.
+ */
+
+/*
+ * Crea una función que reciba dos array, un booleano y retorne un array.
+ * - Si el booleano es verdadero buscará y retornará los elementos comunes
+ *   de los dos array.
+ * - Si el booleano es falso buscará y retornará los elementos no comunes
+ *   de los dos array.
+ * - No se pueden utilizar operaciones del lenguaje que
+ *   lo resuelvan directamente.
+ */
+
+/*
+ * Crea dos funciones, una que calcule el máximo común divisor (MCD) y otra
+ * que calcule el mínimo común múltiplo (mcm) de dos números enteros.
+ * - No se pueden utilizar operaciones del lenguaje que
+ *   lo resuelvan directamente.
+ */
+
+/*
+ * Quiero contar del 1 al 100 de uno en uno (imprimiendo cada uno).
+ * ¿De cuántas maneras eres capaz de hacerlo?
+ * Crea el código para cada una de ellas.
+ */
+
+/*
+ * Crea un programa que calcule quien gana más partidas al piedra,
+ * papel, tijera.
+ * - El resultado puede ser: "Player 1", "Player 2", "Tie" (empate)
+ * - La función recibe un listado que contiene pares, representando cada jugada.
+ * - El par puede contener combinaciones de "R" (piedra), "P" (papel)
+ *   o "S" (tijera).
+ * - Ejemplo. Entrada: [("R","S"), ("S","R"), ("P","S")]. Resultado: "Player 2".
+ */
+
+/*
+ * Crea un programa que dibuje un cuadrado o un triángulo con asteriscos "*".
+ * - Indicaremos el tamaño del lado y si la figura a dibujar es una u otra.
+ * - EXTRA: ¿Eres capaz de dibujar más figuras?
+ */
