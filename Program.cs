@@ -564,7 +564,7 @@ ejercicio12(str1, str2);
     Console.WriteLine("El factorial de " + n + " es " + resultado);
  }
 
-Ejercicio14(7);
+
 
 /*
  * Escribe una función que calcule si un número dado es un número de Armstrong
@@ -572,7 +572,28 @@ Ejercicio14(7);
  * Si no conoces qué es un número de Armstrong, debes buscar información
  * al respecto.
  */
+void Ejercicio15(int number)
+{
+    string numberString = number.ToString();
+    int suma = 0;
+    int digit = 0;
 
+    foreach (char c in numberString)
+    {
+        digit = c - '0';
+
+        suma += (int)Math.Pow(digit, numberString.Length);
+    }
+
+    if (suma == number)
+    {
+        Console.WriteLine("Es un número de Armstrong");
+    }
+    else
+    {
+        Console.WriteLine("No es un número de Armstrong");
+    }
+}
 /*
  * Crea una función que calcule y retorne cuántos días hay entre dos cadenas
  * de texto que representen fechas.
@@ -582,6 +603,25 @@ Ejercicio14(7);
  * - Si una de las dos cadenas de texto no representa una fecha correcta se
  *   lanzará una excepción.
  */
+void Ejercicio16(string fecha1, string fecha2)
+{
+    DateTime date1;
+    DateTime date2;
+
+    if (!DateTime.TryParseExact(fecha1, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out date1))
+    {
+        throw new Exception("La fecha 1 no es válida");
+    }
+
+    if (!DateTime.TryParseExact(fecha2, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out date2))
+    {
+        throw new Exception("La fecha 2 no es válida");
+    }
+
+    TimeSpan diff = date1 - date2;
+
+    Console.WriteLine(Math.Abs(diff.Days));
+}
 
 /*
  * Crea una función que reciba un String de cualquier tipo y se encargue de
@@ -589,3 +629,17 @@ Ejercicio14(7);
  * - No se pueden utilizar operaciones del lenguaje que
  *   lo resuelvan directamente.
  */
+
+ void Ejercicio17(string texto)
+ {
+    string[] palabras = texto.Split(' ');
+
+    string resultado = "";
+
+    foreach (string palabra in palabras)
+    {
+        resultado += char.ToUpper(palabra[0]) + palabra.Substring(1) + " ";
+    }
+
+    Console.WriteLine(resultado);
+ }
