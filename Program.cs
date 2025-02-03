@@ -547,7 +547,8 @@ ejercicio12(str1, str2);
 /*
  * Escribe una función que calcule y retorne el factorial de un número dado
  * de forma recursiva.
- */void Ejercicio14(int n)
+ */
+ void Ejercicio14(int n)
  {
     if(n == 0 || n == 1)
     {
@@ -708,7 +709,6 @@ Boolean Ejercicio18(string[] acciones, string pista)
 }
 
 
-
 /*
  * Crea una función que analice una matriz 3x3 compuesta por "X" y "O"
  * y retorne lo siguiente:
@@ -775,10 +775,6 @@ void Ejercicio20(int dias = 0 , int horas = 0, int minutos = 0, int segundos = 0
     Console.WriteLine($"Total {milisegundos} milisegundos");
 }
 
-Ejercicio20(1, 2, 3, 4);
-
-
-
 /*
  * Crea una función que sume 2 números y retorne su resultado pasados
  * unos segundos.
@@ -788,6 +784,23 @@ Ejercicio20(1, 2, 3, 4);
  *   asíncrona, es decir, sin detener la ejecución del programa principal.
  *   Se podría ejecutar varias veces al mismo tiempo.
  */
+
+ async Task Ejercicio21(int n1,int n2, int seg)
+ {
+    var task1 = new Task(() =>
+    {
+        Thread.Sleep(seg * 1000);
+        Console.WriteLine($"Suma Asincrona {n1 + n2}");
+    });
+
+    task1.Start();
+
+    Console.WriteLine("Hice algo....");
+
+    //await task1;
+
+    Console.WriteLine("Ya acabe");
+ }
 
 /*
  * Lee el fichero "Challenge21.txt" incluido en el proyecto, calcula su
