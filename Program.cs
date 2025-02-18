@@ -802,6 +802,83 @@ void Ejercicio20(int dias = 0 , int horas = 0, int minutos = 0, int segundos = 0
     Console.WriteLine("Ya acabe");
  }
 
+/******************colecciones LINQ POCO CONOCIDAS**********/
+
+void metodo1Union() 
+{
+    var number1 = new int[] { 1, 3, 4, 5, 6, 7, 8 };
+    var number2 = new int[] {  3, 4, 5,0,9};
+
+    var union = number1.Union(number2);
+
+    union.ToList().ForEach(x => Console.WriteLine(x));
+}
+
+//metodo1Union();
+
+void metodo2zip()
+{
+    var number1 = new int[] { 1, 3, 4 };
+    var number2 = new string[] { "uno","dos","tres","cuatro"};
+
+    var union = number1.Zip(number2, (n1, n2) => new { n1, n2 });
+    var union2 = number1.Zip(number2, (n, w) => { return n + " " + w; });
+
+    union.ToList().ForEach(x => Console.WriteLine(x));
+    union2.ToList().ForEach(x => Console.WriteLine(x));
+}
+
+//metodo2zip();
+
+void metodo3join()
+{
+    var beers = new List<(string Name, int IdBrand)>
+    {
+        ("Mahou",1),
+        ("Estrella",2),
+        ("Cruzcampo",3),
+        ("San Miguel",4),
+        ("Alhambra",5),
+    };
+    var brand = new List<(int Id, string Name)>
+    {
+        (1,"Mahou"),
+        (2,"Estrella"),
+        (3,"Cruzcampo"),
+        (4,"San Miguel"),
+        (5,"Alhambra"),
+    };
+
+    var union = beers.Join(brand, b => b.IdBrand, br => br.Id, (b, br) => new { Name = b.Name, Brand = br.Name });
+    var union2 = beers.Join(brand, b => b.IdBrand, br => br.Id, (b, br) =>  { return new { Name = b.Name, Brand = br.Name }; });// las misma pero mas trabajo
+
+    union.ToList().ForEach(x => Console.WriteLine(x));
+}
+//metodo3join();
+
+void metodo4all()
+{
+    var number1 = new int[] { 1, 3, 4, 5,  };
+    var number2 = new int[] { 6,7,8,9,10};
+
+    Console.WriteLine(number1.All(x => x > 5));
+    Console.WriteLine(number2.All(x => x > 5));//devuleve true o false si todos los elementos cumplen la condicion
+}
+
+//metodo4all();
+
+void metodo5selectMany()
+{
+    var number1 = new int[] { 1, 3, 4, 5, };
+    var number2 = new int[] { 6, 7, 8, 9, 10 };
+    var union = number1.SelectMany(x => number2, (x, y) => new { x, y });
+    union.ToList().ForEach(x => Console.WriteLine(x));
+}
+
+metodo5selectMany();
+
+/*****************************************************/
+
 /*
  * Lee el fichero "Challenge21.txt" incluido en el proyecto, calcula su
  * resultado e imprímelo.
