@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 Console.WriteLine("Hello, World!");
@@ -662,51 +663,51 @@ void Ejercicio16(string fecha1, string fecha2)
  * Para ello tiene que realizar la opción correcta en cada tramo de la pista.
  */
 
-Boolean Ejercicio18(string[] acciones, string pista)
-{
-    if(!acciones.All(palabras => palabras.ToLower() == "run" || palabras.ToLower() == "jump"))
-    {
-        Console.WriteLine("acciones incorrectas");
-        return false;
+//Boolean Ejercicio18(string[] acciones, string pista)
+//{
+//    if(!acciones.All(palabras => palabras.ToLower() == "run" || palabras.ToLower() == "jump"))
+//    {
+//        Console.WriteLine("acciones incorrectas");
+//        return false;
 
-    }
+//    }
 
-    for(int i = 0; i < acciones.Length; i++)
-    {
-        acciones[i] = acciones[i].ToLower();
-    }
+//    for(int i = 0; i < acciones.Length; i++)
+//    {
+//        acciones[i] = acciones[i].ToLower();
+//    }
 
-    char[] pistaArray = pista.ToCharArray();
+//    char[] pistaArray = pista.ToCharArray();
 
-    for (int i = 0; i < acciones.Length; i++)
-    {
+//    for (int i = 0; i < acciones.Length; i++)
+//    {
         
-        if (
-            acciones[i] == "run" && pistaArray[i] == '_' ||
-            acciones[i] == "jump" && pistaArray[i] == '|'
-            ) 
-        {
-            continue;
-        }
-        if (acciones[i] == "jump" &&  pistaArray[i] != '|') 
-        {
-            pistaArray[i] = 'x';
-        }
-        if (acciones[i] == "run" && pistaArray[i] != '_')
-        {
-            pistaArray[i] = '/';
-        }
-        else
-        {
-            Console.WriteLine("No paso");
-            return false;
-        }
+//        if (
+//            acciones[i] == "run" && pistaArray[i] == '_' ||
+//            acciones[i] == "jump" && pistaArray[i] == '|'
+//            ) 
+//        {
+//            continue;
+//        }
+//        if (acciones[i] == "jump" &&  pistaArray[i] != '|') 
+//        {
+//            pistaArray[i] = 'x';
+//        }
+//        if (acciones[i] == "run" && pistaArray[i] != '_')
+//        {
+//            pistaArray[i] = '/';
+//        }
+//        else
+//        {
+//            Console.WriteLine("No paso");
+//            return false;
+//        }
 
-    }
-    Console.WriteLine(new string(pistaArray));
+//    }
+//    Console.WriteLine(new string(pistaArray));
 
-    return true;
-}
+//    return true;
+//}
 
 
 /*
@@ -728,38 +729,38 @@ char[,] juego = new char[3, 3]
     { 'X', 'O', 'O' }
 };
 
-void Ejercicio19(char[,] juego) 
-{
-    if (tableroJugadores(juego, 'X'))
-    {
-        Console.WriteLine("Gano X");
-        return;
-    }
+//void Ejercicio19(char[,] juego) 
+//{
+//    if (tableroJugadores(juego, 'X'))
+//    {
+//        Console.WriteLine("Gano X");
+//        return;
+//    }
 
-    if (tableroJugadores(juego, 'O'))
-    {
-        Console.WriteLine("Gano O");
-        return;
-    }
-    Console.WriteLine("Empate");
-    return;
+//    if (tableroJugadores(juego, 'O'))
+//    {
+//        Console.WriteLine("Gano O");
+//        return;
+//    }
+//    Console.WriteLine("Empate");
+//    return;
     
-}
+//}
 
-Boolean tableroJugadores(char[,] matriz, char jugador) 
-{
-    if (matriz[0, 0] == jugador && matriz[1, 1] == jugador && matriz[2, 2] == jugador) return true;
-    if (matriz[0, 2] == jugador && matriz[1, 1] == jugador && matriz[2, 0] == jugador) return true;
+//Boolean tableroJugadores(char[,] matriz, char jugador) 
+//{
+//    if (matriz[0, 0] == jugador && matriz[1, 1] == jugador && matriz[2, 2] == jugador) return true;
+//    if (matriz[0, 2] == jugador && matriz[1, 1] == jugador && matriz[2, 0] == jugador) return true;
 
-    for (int i = 0; i < 3; i++)
-    {
-        if (matriz[i, 0] == jugador && matriz[i, 1] == jugador && matriz[i, 2] == jugador) return true;
-        if (matriz[0, i] == jugador && matriz[1, i] == jugador && matriz[2, i] == jugador) return true;
-    }
-    return false;
-}
+//    for (int i = 0; i < 3; i++)
+//    {
+//        if (matriz[i, 0] == jugador && matriz[i, 1] == jugador && matriz[i, 2] == jugador) return true;
+//        if (matriz[0, i] == jugador && matriz[1, i] == jugador && matriz[2, i] == jugador) return true;
+//    }
+//    return false;
+//}
 
-Ejercicio19(juego);
+//Ejercicio19(juego);
 
 /*
  * Crea una función que reciba días, horas, minutos y segundos (como enteros)
@@ -875,9 +876,23 @@ void metodo5selectMany()
     union.ToList().ForEach(x => Console.WriteLine(x));
 }
 
-metodo5selectMany();
+//metodo5selectMany();
 
 /*****************************************************/
+
+
+/*
+ * El factorial de un número n se define como:
+🔹 n! = n * (n-1)!
+🔹 0! = 1 (caso base)
+ */
+static int Factorial(int n)
+{
+    if (n == 0) return 1; // Caso base
+    return n * Factorial(n - 1); // Llamada recursiva
+}
+
+Console.WriteLine($"Factorial de 5 es {Factorial(5)}");
 
 /*
  * Lee el fichero "Challenge21.txt" incluido en el proyecto, calcula su
